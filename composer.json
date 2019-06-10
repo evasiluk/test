@@ -1,0 +1,23 @@
+{
+    "name": "soltexmedia/ringba-php-api",
+    "description": "ringba api sdk",
+    "authors": [
+        {
+            "name": "Eugene Vasiliuk",
+            "email": "e.vasiluk@intertecsolution.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "Soltexmedia": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Soltexmedia\\RingbaApiServiceProvider"
+            ]
+        }
+    }
+}
