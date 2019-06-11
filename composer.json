@@ -7,10 +7,12 @@
             "email": "e.vasiluk@intertecsolution.com"
         }
     ],
-    "require": {},
+    "require": {
+      "guzzlehttp/guzzle": "^6.3"
+    },
     "autoload" : {
         "psr-4" : {
-            "Soltexmedia": "src/"
+            "Soltexmedia\\": "src/"
         }
     },
     "extra": {
