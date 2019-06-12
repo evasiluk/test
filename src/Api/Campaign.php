@@ -154,61 +154,6 @@ class Campaign extends RingbaApi {
     }
 
     /**
-     * Delete Campaign Call route
-     *
-     * @param string $accountId
-     * @param string $campaignId
-     * @param string $routeId
-     * @return object
-     * @throws \Exception
-     */
-
-    public function deleteCallRoute(string $accountId, string $campaignId, string $routeId)
-    {
-        $request = $this->deleteCallRouteRequest($accountId, $campaignId);
-
-        try {
-            $response = $this->client->send($request, [
-                'headers' => $this->requestHeaders,
-                'json'    => [
-                    "id" => $routeId
-                ]
-            ]);
-        } catch (GuzzleException $e) {
-            throw new \Exception($e->getMessage());
-        }
-
-        $statusCode = $response->getStatusCode();
-        $this->checkStatusCodeIsGreen($statusCode, $request);
-
-        $json = $response->getBody()->getContents();
-        $data = json_decode($json);
-
-        return $data;
-    }
-
-    /**
-     * Create request for operation 'deleteCallRoute'
-     *
-     * @param  string $accountId
-     * @param string $campaignId
-     * @return \GuzzleHttp\Psr7\Request
-     */
-
-    private function deleteCallRouteRequest(string $accountId, string $campaignId)
-    {
-        $resourcePath = "/{accountId}/campaigns/{id}/Routes";
-
-        $resourcePath = str_replace("{accountId}", $accountId, $resourcePath);
-        $resourcePath = str_replace("{id}", $campaignId, $resourcePath);
-
-        $requestUrl = $this->config->getHost() . $resourcePath;
-        $request = new Request('DELETE', $requestUrl);
-
-        return $request;
-    }
-
-    /**
      * Add Affiliate to Campaign
      *
      * @param string $accountId
