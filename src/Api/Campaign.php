@@ -154,6 +154,280 @@ class Campaign extends RingbaApi {
     }
 
     /**
+     * Delete Campaign Call route
+     *
+     * @param string $accountId
+     * @param string $campaignId
+     * @param string $routeId
+     * @return object
+     * @throws \Exception
+     */
+
+    public function deleteCallRoute(string $accountId, string $campaignId, string $routeId)
+    {
+        $request = $this->deleteCallRouteRequest($accountId, $campaignId);
+
+        try {
+            $response = $this->client->send($request, [
+                'headers' => $this->requestHeaders,
+                'json'    => [
+                    "id" => $routeId
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        $statusCode = $response->getStatusCode();
+        $this->checkStatusCodeIsGreen($statusCode, $request);
+
+        $json = $response->getBody()->getContents();
+        $data = json_decode($json);
+
+        return $data;
+    }
+
+    /**
+     * Create request for operation 'deleteCallRoute'
+     *
+     * @param  string $accountId
+     * @param string $campaignId
+     * @return \GuzzleHttp\Psr7\Request
+     */
+
+    private function deleteCallRouteRequest(string $accountId, string $campaignId)
+    {
+        $resourcePath = "/{accountId}/campaigns/{id}/Routes";
+
+        $resourcePath = str_replace("{accountId}", $accountId, $resourcePath);
+        $resourcePath = str_replace("{id}", $campaignId, $resourcePath);
+
+        $requestUrl = $this->config->getHost() . $resourcePath;
+        $request = new Request('DELETE', $requestUrl);
+
+        return $request;
+    }
+
+    /**
+     * Add Affiliate to Campaign
+     *
+     * @param string $accountId
+     * @param string $campaignId
+     * @param array $values
+     * @return object
+     * @throws \Exception
+     */
+
+    public function addAffiliate(string $accountId, string $campaignId, array $values)
+    {
+        $request = $this->addAffiliateRequest($accountId, $campaignId);
+
+        try {
+            $response = $this->client->send($request, [
+                'headers' => $this->requestHeaders,
+                'json'    => $values
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        $statusCode = $response->getStatusCode();
+        $this->checkStatusCodeIsGreen($statusCode, $request);
+
+        $json = $response->getBody()->getContents();
+        $data = json_decode($json);
+
+        return $data;
+    }
+
+    /**
+     * Create request for operation 'addAffiliate'
+     *
+     * @param  string $accountId
+     * @param string $campaignId
+     * @return \GuzzleHttp\Psr7\Request
+     */
+
+    private function addAffiliateRequest(string $accountId, string $campaignId)
+    {
+        $resourcePath = "/{accountId}/campaigns/{id}/Affiliates";
+
+        $resourcePath = str_replace("{accountId}", $accountId, $resourcePath);
+        $resourcePath = str_replace("{id}", $campaignId, $resourcePath);
+
+        $requestUrl = $this->config->getHost() . $resourcePath;
+        $request = new Request('PATCH', $requestUrl);
+
+        return $request;
+    }
+
+    /**
+     * delete Affiliate from Campaign
+     *
+     * @param string $accountId
+     * @param string $campaignId
+     * @param string $affiliateId
+     * @param bool $keepOfferNumbers
+     * @return object
+     * @throws \Exception
+     */
+
+    public function deleteAffiliate(string $accountId, string $campaignId, string $affiliateId, bool $keepOfferNumbers = false)
+    {
+        $request = $this->deleteAffiliateRequest($accountId, $campaignId, $affiliateId);
+
+        try {
+            $response = $this->client->send($request, [
+                'headers' => $this->requestHeaders,
+                'query'    => [
+                    "keepOfferNumbers" => $keepOfferNumbers
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        $statusCode = $response->getStatusCode();
+        $this->checkStatusCodeIsGreen($statusCode, $request);
+
+        $json = $response->getBody()->getContents();
+        $data = json_decode($json);
+
+        return $data;
+    }
+
+    /**
+     * Create request for operation 'deleteAffiliate'
+     *
+     * @param  string $accountId
+     * @param string $campaignId
+     * @param string $affiliateId
+     * @return \GuzzleHttp\Psr7\Request
+     */
+
+    private function deleteAffiliateRequest(string $accountId, string $campaignId, string $affiliateId)
+    {
+        $resourcePath = "/{accountId}/campaigns/{id}/Affiliates/{affiliateId}";
+
+        $resourcePath  = str_replace("{accountId}", $accountId, $resourcePath);
+        $resourcePath  = str_replace("{id}", $campaignId, $resourcePath);
+        $resourcePath  = str_replace("{affiliateId}", $affiliateId, $resourcePath );
+
+        $requestUrl = $this->config->getHost() . $resourcePath ;
+        $request = new Request('DELETE', $requestUrl);
+
+        return $request;
+    }
+
+    /**
+     * Delete Campaign Call route
+     *
+     * @param string $accountId
+     * @param string $campaignId
+     * @param string $routeId
+     * @return object
+     * @throws \Exception
+     */
+
+    public function deleteCallRoute(string $accountId, string $campaignId, string $routeId)
+    {
+        $request = $this->deleteCallRouteRequest($accountId, $campaignId);
+
+        try {
+            $response = $this->client->send($request, [
+                'headers' => $this->requestHeaders,
+                'json'    => [
+                    "id" => $routeId
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        $statusCode = $response->getStatusCode();
+        $this->checkStatusCodeIsGreen($statusCode, $request);
+
+        $json = $response->getBody()->getContents();
+        $data = json_decode($json);
+
+        return $data;
+    }
+
+    /**
+     * Create request for operation 'deleteCallRoute'
+     *
+     * @param  string $accountId
+     * @param string $campaignId
+     * @return \GuzzleHttp\Psr7\Request
+     */
+
+    private function deleteCallRouteRequest(string $accountId, string $campaignId)
+    {
+        $resourcePath = "/{accountId}/campaigns/{id}/Routes";
+
+        $resourcePath = str_replace("{accountId}", $accountId, $resourcePath);
+        $resourcePath = str_replace("{id}", $campaignId, $resourcePath);
+
+        $requestUrl = $this->config->getHost() . $resourcePath;
+        $request = new Request('DELETE', $requestUrl);
+
+        return $request;
+    }
+
+    /**
+     * Add Campaign Call route
+     *
+     * @param string $accountId
+     * @param string $campaignId
+     * @param array $values
+     * @return object
+     * @throws \Exception
+     */
+
+    public function addCallRoute(string $accountId, string $campaignId, array $values)
+    {
+        $request = $this->addCallRouteRequest($accountId, $campaignId);
+
+        try {
+            $response = $this->client->send($request, [
+                'headers' => $this->requestHeaders,
+                'json'    => $values
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        $statusCode = $response->getStatusCode();
+        $this->checkStatusCodeIsGreen($statusCode, $request);
+
+        $json = $response->getBody()->getContents();
+        $data = json_decode($json);
+
+        return $data;
+    }
+
+    /**
+     * Create request for operation 'addCallRoute'
+     *
+     * @param  string $accountId
+     * @param string $campaignId
+     * @return \GuzzleHttp\Psr7\Request
+     */
+
+    private function addCallRouteRequest(string $accountId, string $campaignId)
+    {
+        $resourcePath = "/{accountId}/campaigns/{id}/Routes";
+
+        $resourcePath = str_replace("{accountId}", $accountId, $resourcePath);
+        $resourcePath = str_replace("{id}", $campaignId, $resourcePath);
+
+        $requestUrl = $this->config->getHost() . $resourcePath;
+        $request = new Request('POST', $requestUrl);
+
+        return $request;
+    }
+
+    /**
      * Get Campaigns
      *
      * @param string $accountId
